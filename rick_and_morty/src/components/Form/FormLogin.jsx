@@ -9,7 +9,7 @@ export default function FormLogin({login}) {
         const property = event.target.name;
         const value = event.target.value;
         setUserData({...userData, [property]: value});
-        Validation({...userData, [property]: value}, errors, setErrors);
+        setErrors((Validation({...userData, [property]: value}, errors, setErrors)));
     }
     const handleSubmit = (event) =>{
         event.preventDefault() //para que no se borren los input al apretar submit

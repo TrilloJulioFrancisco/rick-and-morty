@@ -1,0 +1,30 @@
+.button-about,
+.button-home {
+    border-radius: 20px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-shadow: 0px 1px 1px rgb(0, 0, 0);
+  }
+
+  .button-about {
+    background: linear-gradient(to bottom, #8BC34A 0%, #8BC34A 100%);
+    border: 1px solid #000000;
+    box-shadow: 0px 1px 0px #000000;
+  }
+
+  .button-home {
+    background: linear-gradient(to bottom, #8BC34A 0%, #8BC34A 100%);
+    border: 1px solid #000000;
+    box-shadow: 0px 1px 0px #000000;
+  }
+  .bttn-conteiner{
+    text-align: center;
+  }

@@ -4,9 +4,9 @@ export default function Card({id, name, status, species, gender, origin, image, 
       <div>
          <button onClick={() => onClose(id)}>X</button>
          <Link to={`/detail/${id}`} >
-            <h3 className="card-name">{name}</h3>
+            <h1 className="card-name">{name}</h1>
          </Link>
-         <h2>specie: {species}</h2>
+         <h2>Specie: {species}</h2>
          <img src={image} alt='name'/> 
       </div>
    );

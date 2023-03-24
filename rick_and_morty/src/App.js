@@ -1,10 +1,10 @@
-import Cards from './components/Cards.jsx';
-import NavBar from './components/NavBar'
+import Cards from './components/Cards/Cards.jsx';
+import NavBar from './components/NavBar/NavBar'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import About from "./components/About.jsx"
-import Detail from "./components/Detail.jsx"
+import About from "./components/About/About.jsx"
+import Detail from "./components/Detail/Detail.jsx"
 import FormLogin from './components/Form/FormLogin.jsx';
 /* 
 const [state, setState] = useState(initialState);
@@ -33,8 +33,13 @@ function App() {
       {
          axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
          if (data.name) {
+         const characterExists = characters.some((char) => char.id === data.id);
+         if(!characterExists)
+         {
             setCharacters((oldChars) => [...oldChars, data]);
-         } else {
+         }
+         } else 
+         {
             window.alert('¡No hay personajes con este ID!');
          }
       });
