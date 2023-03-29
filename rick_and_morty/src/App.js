@@ -6,6 +6,7 @@ import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import About from "./components/About/About.jsx"
 import Detail from "./components/Detail/Detail.jsx"
 import FormLogin from './components/Form/FormLogin.jsx';
+import Favorites from './components/Favorites/Favorites.jsx';
 /* 
 const [state, setState] = useState(initialState);
 Donde initialState es el valor inicial que deseas asignar al estado y 
@@ -21,7 +22,7 @@ function App() {
 
 
    //! HOOKS:
-   React.useEffect(() => {
+   useEffect(() => {
       !access && navigate('/');
    }, [access]);
    const { pathname } = useLocation(); //useLocation trae muchos datos, entre ellos pathname el cual nos dice en cual / estamos ubicados. traemos solo ese dato 
@@ -72,6 +73,7 @@ function App() {
             <Route path="/detail/:id" element={<Detail/>} />
             <Route path="/" element={<FormLogin login={login} />} />
             <Route path="/home" element={<Cards characters={characters} onClose={onClose} />}></Route>
+            <Route path="/favorites" element={<Favorites onClose={onClose}/>}  />
          </Routes>
          
       </div>

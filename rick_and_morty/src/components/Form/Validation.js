@@ -1,4 +1,4 @@
-const validation = (userData, errors, setErrors) =>{
+const validation = (userData) =>{
     let error = {};
     if(!userData.email){
         //setErrors({...errors, email:"Completar este campo"})
