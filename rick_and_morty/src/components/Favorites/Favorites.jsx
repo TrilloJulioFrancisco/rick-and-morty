@@ -1,43 +1,69 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import Card from '../Card/Card'
-import { removeFav } from '../../redux/action'
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Card from "../Card/Card";
+import { removeFav, filterCards, orderCards } from "../../redux/action";
 
-function Favorites({myFavorites, onClose, removeFav}) {
-  function closeFavorite(id){
+export default function Favorites({ onClose }) {
+  const { myFavorites } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  function closeFavorite(id) {
     onClose(id);
-    removeFav(id);
+    dispatch(removeFav(id));
+  }
+  function handleOrder(event) {
+    
+    const { value } = event.target; //!opcion con destructuring
+    dispatch(orderCards(value));
+  }
+  function handleFilter(event) {
+    
+    dispatch(filterCards(event.target.value)); //!opcion sin destructuring
   }
   return (
     <div>
-      {
-        myFavorites && myFavorites.map((element)=> { return(
-        <Card 
-        id = {element.id}
-        name={element.name}
-        status={element.status}
-        species={element.species}
-        gender={element.gender}
-        origin={element.origin.name}
-        image={element.image}
-        onClose={()=> closeFavorite(element.id)}
-        ></Card>
-        );
-      })
-        
-      }
+      <select onChange={handleOrder}>
+        <option value="DEFAULT" disable>
+          Select Order
+        </option>
+        <option value="Ascendente">Ascendete</option>
+        <option value="Descendente">Descendete</option>
+      </select>
+      <select onChange={handleFilter}>
+        <option value="DEFAULT" disable>
+          Select Gender
+        </option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Genderless">Genderless</option>
+        <option value="unknown">unknown</option>
+      </select>
+      {myFavorites &&
+        myFavorites.map((element) => {
+          return (
+            <Card
+              id={element.id}
+              name={element.name}
+              status={element.status}
+              species={element.species}
+              gender={element.gender}
+              origin={element.origin.name}
+              image={element.image}
+              onClose={() => closeFavorite(element.id)}
+            ></Card>
+          );
+        })}
     </div>
-  )
+  );
 }
-function mapState(st) {
-  return {
-    myFavorites: st.myFavorites,
-  };
-}
-function mapDispatch(d) {
-  return {
-    removeFav: (id) => d(removeFav(id)),
-  };
-}
+// function mapState(st) {
+//   return {
+//     myFavorites: st.myFavorites,
+//   };
+// }
+// function mapDispatch(d) {
+//   return {
+//     removeFav: (id) => d(removeFav(id)),
+//   };
+// }
 
-export default connect(mapState, mapDispatch)(Favorites);
+// export default connect(mapState, mapDispatch)(Favorites);

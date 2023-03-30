@@ -27,7 +27,6 @@ function App() {
    }, [access]);
    const { pathname } = useLocation(); //useLocation trae muchos datos, entre ellos pathname el cual nos dice en cual / estamos ubicados. traemos solo ese dato 
                                        //porque ese es el que necesitamos aca
-
    //! FUNCIONES:
    function onSearch(id) {
       if(id>0 && id<827)
