@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { addFav, removeFav } from "../../redux/action";
+
 export default function Card(props) {
   const { id, name, status, species, gender, origin, image, onClose } = props;
   const [isFav, setIsFav] = useState(false);
-  const dispatch = useDispatch();
+
   const { myFavorites } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   function handleFavorite() {
     if (isFav) {
@@ -25,6 +27,7 @@ export default function Card(props) {
       }
     });
   }, [myFavorites]);
+  
   function superClouse() {
     onClose(id);
     dispatch(removeFav(id));

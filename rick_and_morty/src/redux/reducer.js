@@ -1,4 +1,4 @@
-import { ADD_FAV, REMOVE_FAV, FILTER, ORDER } from "./types";
+import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, RESET } from "./types";
 
 const initialState = {
   myFavorites: [],
@@ -33,15 +33,20 @@ export default function rootReducer(state = initialState, action) {
       };
     case ORDER:
       const newOrder = state.allCharacters.sort((a, b) => {
-        if(a.id>b.id){
-          return "Ascendente" === action.payload ? 1 : -1 
+        if (a.id > b.id) {
+          return "Ascendente" === action.payload ? 1 : -1;
         }
-        if(a.id<b.id){
-          return "Descendente" === action.payload ? 1 : -1 
+        if (a.id < b.id) {
+          return "Descendente" === action.payload ? 1 : -1;
         }
         return 0;
       });
       return { ...state, myFavorites: newOrder };
+    case RESET:
+      return {
+        ...state,
+        myFavorites: state.allCharacters,
+      };
     default:
       return state;
   }

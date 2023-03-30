@@ -1,7 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../Card/Card";
-import { removeFav, filterCards, orderCards } from "../../redux/action";
+import {
+  removeFav,
+  filterCards,
+  orderCards,
+  resetCards,
+} from "../../redux/action";
 
 export default function Favorites({ onClose }) {
   const { myFavorites } = useSelector((state) => state);
@@ -11,13 +16,14 @@ export default function Favorites({ onClose }) {
     dispatch(removeFav(id));
   }
   function handleOrder(event) {
-    
     const { value } = event.target; //!opcion con destructuring
     dispatch(orderCards(value));
   }
   function handleFilter(event) {
-    
     dispatch(filterCards(event.target.value)); //!opcion sin destructuring
+  }
+  function resetFunct() {
+    dispatch(resetCards());
   }
   return (
     <div>
@@ -37,6 +43,7 @@ export default function Favorites({ onClose }) {
         <option value="Genderless">Genderless</option>
         <option value="unknown">unknown</option>
       </select>
+      <button onClick={resetFunct}>Reset</button>
       {myFavorites &&
         myFavorites.map((element) => {
           return (
